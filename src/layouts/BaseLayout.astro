@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Presupuesto en 24h | Nombre del Negocio",
+  description = "Servicio profesional con respuesta rápida. Pide presupuesto y te contestamos en menos de 24h.",
+  canonical = "https://example.com/",
+  ogImage = "/og.jpg",
+  locale = "es_ES",
+  noindex = false,
+  businessName = "Nombre del Negocio",
+  phone = "+34 600 000 000",
+  areaServed = "Madrid",
+} = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: businessName,
+  areaServed,
+  telephone: phone,
+  url: canonical,
+};
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <slot />
+  </body>
+</html>

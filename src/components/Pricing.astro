@@ -1,0 +1,33 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+
+const { plans = [
+  { name: "Básico", price: "Desde 99€", desc: "Para casos sencillos.", items: ["Respuesta en 24h", "Presupuesto por escrito", "Soporte por WhatsApp"] },
+  { name: "Estándar", price: "Desde 199€", desc: "La opción más habitual.", highlight: true, items: ["Todo lo anterior", "Visita/diagnóstico (si aplica)", "Prioridad en agenda"] },
+  { name: "Premium", price: "A medida", desc: "Para necesidades especiales.", items: ["Plan personalizado", "Revisión y seguimiento", "Plazos cerrados"] },
+], whatsappUrl = "#" } = Astro.props;
+---
+<section class="section" id="precios">
+  <Container>
+    <h2 class="h2">Precios orientativos</h2>
+    <p class="lead">Rango inicial para dar contexto. El presupuesto final depende del caso.</p>
+
+    <div class="grid cols-3">
+      {plans.map((p) => (
+        <div class="card" style={`padding:16px; border: 1px solid ${p.highlight ? "rgba(93,214,255,.35)" : "rgba(255,255,255,.10)"};`}>
+          <div class="pill" style="margin-bottom:10px;">{p.name}</div>
+          <div style="font-size:28px; font-weight:900; letter-spacing:-.02em;">{p.price}</div>
+          <div style="color:var(--muted); margin-top:6px;">{p.desc}</div>
+          <ul style="margin:12px 0 0; padding-left:18px; color:var(--muted);">
+            {p.items.map((it) => <li>{it}</li>)}
+          </ul>
+          <div style="margin-top:14px;">
+            <Button href="#presupuesto" variant={p.highlight ? "primary" : "secondary"}>Pedir presupuesto</Button>
+            <span style="margin-left:10px; color:var(--muted); font-size:13px;">o <a href={whatsappUrl}>WhatsApp</a></span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

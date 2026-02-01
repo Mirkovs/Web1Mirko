@@ -1,0 +1,28 @@
+---
+import Container from "./Container.astro";
+
+const { title = "Servicios", subtitle = "Elige lo que necesitas. Si no lo ves aquí, dínoslo y lo valoramos.",
+services = [
+  { name: "Servicio 1", desc: "Descripción corta orientada a beneficio." },
+  { name: "Servicio 2", desc: "Qué incluye y para quién es." },
+  { name: "Servicio 3", desc: "Resultado esperado + rapidez." },
+  { name: "Servicio 4", desc: "Opcional o premium." },
+  { name: "Servicio 5", desc: "Casos típicos." },
+  { name: "Servicio 6", desc: "Cobertura / zona." },
+]} = Astro.props;
+---
+<section class="section" id="servicios">
+  <Container>
+    <h2 class="h2">{title}</h2>
+    <p class="lead">{subtitle}</p>
+
+    <div class="grid cols-3">
+      {services.map((s) => (
+        <div class="card" style="padding:16px;">
+          <div style="font-weight:800;">{s.name}</div>
+          <div style="color:var(--muted); margin-top:6px;">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

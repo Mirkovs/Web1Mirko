@@ -1,0 +1,28 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+
+const { brand = "TuMarca", phone = "+34 600 000 000", whatsappUrl = "#" } = Astro.props;
+---
+<header style="position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: rgba(11,18,32,.75); border-bottom: 1px solid rgba(255,255,255,.08);">
+  <Container>
+    <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:12px;">
+      <a href="#" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
+        <span style="width:34px; height:34px; border-radius:12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display:inline-block;"></span>
+        <span style="font-weight:800; letter-spacing:-.01em;">{brand}</span>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="kbd" style="display:none" id="telhint">Tel: {phone}</span>
+        <Button href="#presupuesto" variant="secondary">Pedir presupuesto</Button>
+        <Button href={whatsappUrl} variant="primary" ariaLabel="Abrir WhatsApp">WhatsApp</Button>
+      </div>
+    </div>
+  </Container>
+</header>
+
+<style>
+@media (min-width: 900px){
+  #telhint{display:inline-flex !important}
+}
+</style>

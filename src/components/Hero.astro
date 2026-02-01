@@ -1,0 +1,42 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+
+const {
+  headline = "Consigue un presupuesto claro en 24h",
+  subhead = "Servicio profesional, sin sorpresas. Cuéntanos qué necesitas y te respondemos con una propuesta sencilla y transparente.",
+  bullets = [
+    "Respuesta en menos de 24h",
+    "Precio cerrado y por escrito",
+    "Atención por WhatsApp o llamada",
+  ],
+  whatsappUrl = "#",
+} = Astro.props;
+---
+<section class="section">
+  <Container>
+    <div class="grid" style="gap:18px;">
+      <div class="pill">✅ Respuesta rápida · 📍 Servicio local · ⭐ Valoraciones reales</div>
+      <h1 class="h1">{headline}</h1>
+      <p class="lead">{subhead}</p>
+
+      <div class="grid cols-2" style="gap:10px; max-width:680px;">
+        {bullets.map((b) => (
+          <div class="card" style="padding:14px; display:flex; gap:10px; align-items:flex-start;">
+            <span style="width:10px; height:10px; border-radius:999px; background: var(--ok); margin-top:7px;"></span>
+            <span style="color:var(--muted)">{b}</span>
+          </div>
+        ))}
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+        <Button href="#presupuesto" variant="primary" size="lg">Pedir presupuesto</Button>
+        <Button href={whatsappUrl} variant="secondary" size="lg">Hablar por WhatsApp</Button>
+      </div>
+
+      <div style="color: var(--muted); font-size: 13px; margin-top: 6px;">
+        ⏱️ Normalmente respondemos el mismo día laboral. Sin spam.
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,25 @@
+---
+import Container from "./Container.astro";
+
+const { faqs = [
+  { q: "¿En cuánto tiempo respondéis?", a: "Normalmente en el mismo día laboral. Como máximo 24h." },
+  { q: "¿El presupuesto es gratuito?", a: "Depende del servicio. En la mayoría de casos sí, y siempre lo indicamos antes." },
+  { q: "¿Trabajáis en mi zona?", a: "Dinos tu ciudad o barrio y te confirmamos cobertura." },
+  { q: "¿Qué necesitáis para dar precio?", a: "Una descripción breve, fotos si aplica y una forma de contacto." },
+]} = Astro.props;
+---
+<section class="section" id="faq">
+  <Container>
+    <h2 class="h2">Preguntas frecuentes</h2>
+    <p class="lead">Resuelve objeciones antes de que te las pregunten.</p>
+
+    <div class="grid cols-2">
+      {faqs.map((f) => (
+        <details class="card" style="padding:16px;">
+          <summary style="cursor:pointer; font-weight:850;">{f.q}</summary>
+          <div style="color:var(--muted); margin-top:10px;">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </Container>
+</section>

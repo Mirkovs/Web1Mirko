@@ -1,0 +1,27 @@
+---
+import Container from "./Container.astro";
+
+const { reviews = [
+  { name: "Cliente A", text: "Rápidos y claros. Presupuesto y trabajo sin sorpresas.", stars: 5 },
+  { name: "Cliente B", text: "Muy buena comunicación por WhatsApp. Repetiría.", stars: 5 },
+  { name: "Cliente C", text: "Puntuales y profesionales. Todo perfecto.", stars: 5 },
+]} = Astro.props;
+
+const stars = (n) => "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n);
+---
+<section class="section" id="opiniones">
+  <Container>
+    <h2 class="h2">Opiniones</h2>
+    <p class="lead">Prueba social corta y creíble. Mejor 3 buenas que 20 inventadas.</p>
+
+    <div class="grid cols-3">
+      {reviews.map((r) => (
+        <figure class="card" style="padding:16px; margin:0;">
+          <div style="color: var(--warn); letter-spacing: .08em; font-size: 14px;">{stars(r.stars)}</div>
+          <blockquote style="margin:10px 0 0; color: var(--muted);">“{r.text}”</blockquote>
+          <figcaption style="margin-top:12px; font-weight:800;">— {r.name}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </Container>
+</section>

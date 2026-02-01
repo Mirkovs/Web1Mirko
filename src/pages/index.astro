@@ -1,17 +1,148 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import TrustBar from "../components/TrustBar.astro";
+import Services from "../components/Services.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import Reviews from "../components/Reviews.astro";
+import Pricing from "../components/Pricing.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+import Container from "../components/Container.astro";
+import Button from "../components/Button.astro";
 
+const brand = "Ejemplo Pro";
+const phone = "+34 600 000 000";
+const whatsappUrl = "https://wa.me/34600000000?text=Hola%2C%20quiero%20un%20presupuesto";
+const canonical = "https://example.com/";
+
+const title = "Presupuesto en 24h | Ejemplo Pro";
+const description = "Te respondemos en menos de 24h con una propuesta clara. Atención por WhatsApp o llamada. Servicio local y profesional.";
+
+// Para formularios: usa Formspree/Netlify Forms/etc.
+// Sustituye la URL por la tuya. Si no tienes, deja action="#" y usa WhatsApp.
+const formAction = "https://formspree.io/f/XXXXXXXX";
 ---
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage="/og.jpg"
+  businessName={brand}
+  phone={phone}
+  areaServed="Madrid"
+>
+  <Header brand={brand} phone={phone} whatsappUrl={whatsappUrl} />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <main id="contenido">
+    <Hero
+      headline="Presupuesto claro en 24h"
+      subhead="Cuéntanos qué necesitas y te enviamos una propuesta simple, con tiempos y precio por escrito."
+      whatsappUrl={whatsappUrl}
+      bullets={[
+        "Sin sorpresas: precio por escrito",
+        "Respuesta en 24h (laborables)",
+        "Atención por WhatsApp o llamada"
+      ]}
+    />
+
+    <TrustBar />
+
+    <Services
+      services={[
+        { name: "Servicio 1", desc: "Beneficio claro y directo para el cliente." },
+        { name: "Servicio 2", desc: "Qué haces y por qué eres mejor opción." },
+        { name: "Servicio 3", desc: "Plazos y resultado esperado." },
+        { name: "Servicio 4", desc: "Opcional premium o urgencias." },
+        { name: "Servicio 5", desc: "Casos típicos que te piden." },
+        { name: "Servicio 6", desc: "Cobertura y disponibilidad." },
+      ]}
+    />
+
+    <HowItWorks />
+    <Reviews />
+    <Pricing whatsappUrl={whatsappUrl} />
+
+    <!-- FORM / CONVERSIÓN -->
+    <section class="section" id="presupuesto">
+      <Container>
+        <div class="grid cols-2" style="align-items:start;">
+          <div>
+            <h2 class="h2">Pide tu presupuesto</h2>
+            <p class="lead">Rellena 4 datos y te respondemos en 24h. Si prefieres, escríbenos por WhatsApp.</p>
+
+            <div class="card" style="padding:16px;">
+              <form method="POST" action={formAction} style="display:grid; gap:12px;">
+                <label>
+                  <span style="display:block; font-weight:800; margin-bottom:6px;">Nombre</span>
+                  <input name="name" required autocomplete="name" style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.16); background: rgba(0,0,0,.15); color: var(--text);" />
+                </label>
+
+                <label>
+                  <span style="display:block; font-weight:800; margin-bottom:6px;">Teléfono</span>
+                  <input name="phone" required inputmode="tel" autocomplete="tel" placeholder="+34 6XX XXX XXX"
+                    style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.16); background: rgba(0,0,0,.15); color: var(--text);" />
+                </label>
+
+                <label>
+                  <span style="display:block; font-weight:800; margin-bottom:6px;">Zona / Ciudad</span>
+                  <input name="city" required autocomplete="address-level2"
+                    style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.16); background: rgba(0,0,0,.15); color: var(--text);" />
+                </label>
+
+                <label>
+                  <span style="display:block; font-weight:800; margin-bottom:6px;">¿Qué necesitas?</span>
+                  <textarea name="message" required rows="4" placeholder="Ej: necesito X, para tal fecha, tengo fotos si hace falta…"
+                    style="width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.16); background: rgba(0,0,0,.15); color: var(--text); resize:vertical;"></textarea>
+                </label>
+
+                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                  <Button href="#presupuesto" variant="primary" ariaLabel="Enviar formulario" target={undefined} rel={undefined}>
+                    Enviar solicitud
+                  </Button>
+                  <span style="color:var(--muted); font-size:13px;">o <a href={whatsappUrl}>WhatsApp</a></span>
+                </div>
+
+                <div style="color:var(--muted); font-size: 12px;">
+                  Al enviar aceptas que te contactemos para responder a tu solicitud. (Añade aquí tu texto legal/privacidad del cliente).
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <aside class="card" style="padding:16px;">
+            <div class="pill">Respuesta rápida</div>
+            <h3 style="margin:10px 0 6px; font-size:20px; letter-spacing:-.01em;">¿Qué te enviaremos?</h3>
+            <ul style="margin:0; padding-left:18px; color:var(--muted);">
+              <li>Precio estimado y rango</li>
+              <li>Opciones (si hay varias)</li>
+              <li>Plazo y disponibilidad</li>
+              <li>Siguiente paso claro</li>
+            </ul>
+
+            <div style="margin-top:16px; border-top: 1px solid rgba(255,255,255,.10); padding-top:14px;">
+              <div style="font-weight:900;">Contacto</div>
+              <div style="color:var(--muted); margin-top:6px;">Tel: {phone}</div>
+              <div style="margin-top:10px;">
+                <Button href={whatsappUrl} variant="secondary">Abrir WhatsApp</Button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </Container>
+    </section>
+
+    <FAQ />
+  </main>
+
+  <Footer brand={brand} phone={phone} email="hola@ejemplo.com" address="Madrid" />
+</BaseLayout>
+
+<style>
+/* input focus */
+input:focus-visible, textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 6px var(--ring);
+}
+</style>

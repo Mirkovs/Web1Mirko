@@ -1,0 +1,20 @@
+---
+import Container from "./Container.astro";
+const { brand="TuMarca", address="C/ Ejemplo 123, Madrid", email="hola@tumarca.com", phone="+34 600 000 000" } = Astro.props;
+---
+<footer style="padding:30px 0 40px; border-top: 1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.08);">
+  <Container>
+    <div class="grid cols-2">
+      <div>
+        <div style="font-weight:900;">{brand}</div>
+        <div style="color:var(--muted); margin-top:6px;">{address}</div>
+        <div style="color:var(--muted); margin-top:6px;">{phone} · {email}</div>
+      </div>
+      <div style="color:var(--muted); font-size: 13px;">
+        <div><a href="#presupuesto">Pedir presupuesto</a></div>
+        <div style="margin-top:8px;"><a href="#servicios">Servicios</a> · <a href="#faq">FAQ</a> · <a href="#opiniones">Opiniones</a></div>
+        <div style="margin-top:12px;">© {new Date().getFullYear()} {brand}. Todos los derechos reservados.</div>
+      </div>
+    </div>
+  </Container>
+</footer>

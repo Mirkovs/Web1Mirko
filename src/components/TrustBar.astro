@@ -1,0 +1,21 @@
+---
+import Container from "./Container.astro";
+
+const { items = [
+  { title: "Garantía", desc: "Trabajos con seguimiento y revisión." },
+  { title: "Transparencia", desc: "Presupuesto por escrito." },
+  { title: "Rapidez", desc: "Fechas y plazos claros." },
+] } = Astro.props;
+---
+<section style="padding:0 0 12px;">
+  <Container>
+    <div class="grid cols-3">
+      {items.map((it) => (
+        <div class="card" style="padding:16px;">
+          <div style="font-weight:800;">{it.title}</div>
+          <div style="color:var(--muted); margin-top:6px;">{it.desc}</div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

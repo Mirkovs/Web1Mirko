@@ -1,5 +1,10 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-// https://astro.build/config
-export default defineConfig({});
+const site = "https://YOUR_GH_USER.github.io";
+const base = "/YOUR_REPO"; // si publicas en repo (no user page). Para user page, pon "".
+
+export default defineConfig({
+  site,
+  base,
+  trailingSlash: "always",
+});

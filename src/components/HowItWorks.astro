@@ -1,0 +1,25 @@
+---
+import Container from "./Container.astro";
+
+const { steps = [
+  { title: "Cuéntanos tu caso", desc: "Rellena el formulario o escríbenos por WhatsApp." },
+  { title: "Propuesta clara", desc: "Te enviamos un presupuesto y tiempos por escrito." },
+  { title: "Ejecución y cierre", desc: "Nos coordinamos y dejamos todo listo." },
+]} = Astro.props;
+---
+<section class="section" id="proceso">
+  <Container>
+    <h2 class="h2">Cómo trabajamos</h2>
+    <p class="lead">Un proceso simple para que no pierdas tiempo.</p>
+
+    <div class="grid cols-3">
+      {steps.map((st, i) => (
+        <div class="card" style="padding:16px;">
+          <div class="pill" style="margin-bottom:10px;">Paso {i + 1}</div>
+          <div style="font-weight:850;">{st.title}</div>
+          <div style="color:var(--muted); margin-top:6px;">{st.desc}</div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>
